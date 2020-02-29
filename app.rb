@@ -7,6 +7,7 @@ get '/' do
 	erb "Hello! <a href=\"https://github.com/bootstrap-ruby/sinatra-bootstrap\">Original</a> pattern has been modified for <a href=\"http://rubyschool.us/\">Ruby School!!!</a>"
 end
 get '/about'do
+	@error = "somethings"
 	erb :about
 end
 get '/visit' do
@@ -21,6 +22,10 @@ post '/visit'do
 	@datetime = params[:datetime]
 	@barber = params[:barber]
 	@color = params[:color]
+	if @name ==''
+		@error = 'Введите имя'
+	 	return	erb :visit
+	end
 	# f = File.open './public/users.txt','a'
 	# f.write "Nane: #{@name}, phone number: #{@phone}, your date and time #{@datetime}, your master: #{@barber} color: #{@color}"
 	# f.close
